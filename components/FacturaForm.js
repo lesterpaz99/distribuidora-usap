@@ -21,7 +21,7 @@ const FacturaForm = () => {
 
 	const handleErrors = (e) => {
 		if (e.target.id === 'cli_id') {
-			if (e.target.value.length === 0) {
+			if (e.target.value.length === 0 || formState.dirtyFields.cli_id) {
 				setErrorCliente(true);
 				return;
 			}
@@ -29,7 +29,7 @@ const FacturaForm = () => {
 			return;
 		}
 		if (e.target.id === 'caje_id') {
-			if (e.target.value.length === 0) {
+			if (e.target.value.length === 0 || formState.dirtyFields.caje_id) {
 				setErrorCajero(true);
 				return;
 			}
@@ -38,7 +38,7 @@ const FacturaForm = () => {
 		}
 	};
 
-	const { control, handleSubmit } = useForm({
+	const { control, handleSubmit, formState } = useForm({
 		defaultValues: {
 			cli_id: '',
 			caje_id: '',
@@ -98,6 +98,7 @@ const FacturaForm = () => {
 			<Controller
 				name='caje_id'
 				control={control}
+				rules={{ required: true }}
 				render={({ field }) => (
 					<TextField
 						{...field}
@@ -165,7 +166,8 @@ const FacturaForm = () => {
 			<input
 				value='Guardar'
 				type='submit'
-				className='bg-green-300 ring-2 ring-cyan-300 hover:cursor-pointer active:bg-green-400'
+				className='bg-green-300 ring-2 ring-cyan-300 hover:cursor-pointer active:bg-green-400 disabled:bg-slate-50 disabled:ring-0 disabled:cursor-default'
+				disabled={formState.isValid}
 			/>
 		</form>
 	);

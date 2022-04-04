@@ -7,7 +7,8 @@ import BodegaForm from '../components/BodegaForm';
 import ClienteForm from '../components/ClienteForm';
 import EmpleadoForm from '../components/EmpleadoForm';
 import FacturaForm from '../components/FacturaForm';
+import ProveedorForm from '../components/ProveedorForm';
 
 export default function Home() {
-	return <EmpleadoForm />;
+	return <FacturaForm />;
 }

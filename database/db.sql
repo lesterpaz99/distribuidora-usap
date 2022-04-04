@@ -82,7 +82,6 @@ CREATE TABLE articulo (
 CREATE TABLE proveedor (
     prov_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR (100) NOT NULL,
     direccion VARCHAR(255),
     telefono VARCHAR(100),
     email VARCHAR(100) UNIQUE
