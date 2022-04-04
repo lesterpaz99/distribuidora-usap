@@ -7,7 +7,7 @@ CREATE TABLE cliente (
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR (100) NOT NULL,
     direccion VARCHAR(255),
-    fecha_nacimiento DATETIME,
+    fecha_nacimiento TIMESTAMP,
     telefono VARCHAR(100),
     email VARCHAR(100) UNIQUE
 );
@@ -84,7 +84,6 @@ CREATE TABLE proveedor (
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR (100) NOT NULL,
     direccion VARCHAR(255),
-    fecha_nacimiento DATETIME,
     telefono VARCHAR(100),
     email VARCHAR(100) UNIQUE
 );
