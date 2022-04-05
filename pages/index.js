@@ -8,7 +8,8 @@ import ClienteForm from '../components/ClienteForm';
 import EmpleadoForm from '../components/EmpleadoForm';
 import FacturaForm from '../components/FacturaForm';
 import ProveedorForm from '../components/ProveedorForm';
+import OrdenEntregaForm from '../components/OrdenEntregaForm';
 
 export default function Home() {
-	return <ProveedorForm />;
+	return <OrdenEntregaForm />;
 }

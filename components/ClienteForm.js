@@ -34,7 +34,7 @@ const ClienteForm = () => {
 			nombre,
 			apellido,
 			direccion,
-			fecha_nacimiento,
+			fecha_nacimiento: format(fecha_nacimiento, 'yyyy-MM-dd HH-mm-ss'),
 			telefono,
 			email,
 		});
