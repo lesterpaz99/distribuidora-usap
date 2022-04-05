@@ -11,7 +11,7 @@ import axios from 'axios';
 const ClienteForm = () => {
 	const [value, setValue] = useState(null);
 
-	const { control, handleSubmit } = useForm({
+	const { control, handleSubmit, reset } = useForm({
 		defaultValues: {
 			nombre: '',
 			apellido: '',
@@ -47,6 +47,12 @@ const ClienteForm = () => {
 			email,
 		});
 		console.log(rta);
+		reset({	nombre: '',
+		apellido: '',
+		direccion: '',
+		fecha_nacimiento: null,
+		telefono: '',
+		email: '',})
 	};
 
 	return (
