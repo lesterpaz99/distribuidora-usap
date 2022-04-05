@@ -1,16 +1,15 @@
 import { useForm, Controller } from 'react-hook-form';
-import Input from '@mui/material/Input';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 
 const ArticleForm = () => {
-	const { control, handleSubmit } = useForm({
+	const { control, handleSubmit, reset } = useForm({
 		defaultValues: {
 			nombre: '',
 			descripcion: '',
-			precio: 0,
-			cli_id: 0,
-			bod_id: 0,
+			precio: '',
+			cli_id: '',
+			bod_id: '',
 		},
 	});
 
@@ -18,16 +17,20 @@ const ArticleForm = () => {
 		const rta = await axios.post('api/articles', {
 			nombre,
 			descripcion,
-			precio,
+			precio: 0.00,
 			cli_id,
 			bod_id,
 		});
 		console.log({ nombre, descripcion, precio, cli_id, bod_id });
 		console.log(rta);
+
+		reset();
 	};
 
 	return (
-		<form
+		<div>
+			<h2>CRUD Articulo</h2>
+					<form
 			onSubmit={handleSubmit(onSubmit)}
 			className='w-1/2 flex flex-col gap-2 p-8'
 		>
@@ -35,13 +38,21 @@ const ArticleForm = () => {
 				name='nombre'
 				control={control}
 				rules={{ required: true }}
-				render={({ field }) => <Input {...field} placeholder='Nombre' />}
+				render={({ field }) => <TextField {...field} label='Nombre' placeholder='Jugo' />}
 			/>
 			<Controller
 				name='descripcion'
 				control={control}
 				render={({ field }) => (
-					<TextField {...field} placeholder='Descripcion' />
+					<TextField {...field} label='Descripcion' placeholder='Sabor Naranja, 1Lt Premium' />
+				)}
+			/>
+						<Controller
+				name='precio'
+				control={control}
+				rules={{ required: true }}
+				render={({ field }) => (
+					<TextField {...field} type='number' label='Precio' placeholder='L 38.00' />
 				)}
 			/>
 			<Controller
@@ -49,7 +60,7 @@ const ArticleForm = () => {
 				control={control}
 				rules={{ required: true }}
 				render={({ field }) => (
-					<Input {...field} placeholder='Id del cliente' />
+					<TextField {...field} type='number' label='ID del cliente' placeholder='Ejm: 1' />
 				)}
 			/>
 			<Controller
@@ -57,7 +68,7 @@ const ArticleForm = () => {
 				control={control}
 				rules={{ required: true }}
 				render={({ field }) => (
-					<Input {...field} placeholder='Id de la Bodega' />
+					<TextField {...field} type='number' label='ID de la bodega' placeholder='Ejm: 2' />
 				)}
 			/>
 			<input
@@ -65,6 +76,7 @@ const ArticleForm = () => {
 				className='bg-green-300 ring-2 ring-cyan-300 hover:cursor-pointer active:bg-green-400'
 			/>
 		</form>
+		</div>
 	);
 };
 

@@ -1,9 +1,9 @@
 import { useForm, Controller } from 'react-hook-form';
-import Input from '@mui/material/Input';
 import axios from 'axios';
+import { TextField } from '@mui/material';
 
 const BodegaForm = () => {
-	const { control, handleSubmit } = useForm({
+	const { control, handleSubmit, reset } = useForm({
 		defaultValues: {
 			direccion: '',
 		},
@@ -15,9 +15,13 @@ const BodegaForm = () => {
 		});
 		console.log({ direccion });
 		console.log(rta);
+
+		reset({direccion: ''})
 	};
 
 	return (
+		<div>
+			<h2>Bodega</h2>
 		<form
 			onSubmit={handleSubmit(onSubmit)}
 			className='w-1/2 flex flex-col gap-2 p-8'
@@ -26,13 +30,14 @@ const BodegaForm = () => {
 				name='direccion'
 				control={control}
 				rules={{ required: true }}
-				render={({ field }) => <Input {...field} />}
+				render={({ field }) => <TextField {...field} label='Direccion' placeholder='33 Calle, Sector El Polvorin' />}
 			/>
 			<input
 				type='submit'
 				className='bg-green-300 ring-2 ring-cyan-300 hover:cursor-pointer active:bg-green-400'
 			/>
 		</form>
+		</div>
 	);
 };
 
