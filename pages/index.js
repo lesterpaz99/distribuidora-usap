@@ -10,5 +10,5 @@ import FacturaForm from '../components/FacturaForm';
 import ProveedorForm from '../components/ProveedorForm';
 
 export default function Home() {
-	return <FacturaForm />;
+	return <ProveedorForm />;
 }

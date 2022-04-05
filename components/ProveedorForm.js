@@ -1,29 +1,16 @@
-import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
 const ProveedorForm = () => {
-	const schema = yup
-		.object({
-			nombre: yup.string().required(),
-			direccion: yup.string(),
-			telefono: yup.string().required(),
-			email: yup.string(),
-		})
-		.required();
-
-	const {
-		control,
-		handleSubmit,
-		formState: { errors },
-	} = useForm({
-		resolver: yupResolver(schema),
+	const { control, handleSubmit, formState } = useForm({
+		nombre: '',
+		direccion: '',
+		telefono: '',
+		email: '',
 	});
 
-	/* 	const e = useForm({
+	const e = useForm({
 		defaultValues: {
 			nombre: '',
 			direccion: '',
@@ -31,7 +18,7 @@ const ProveedorForm = () => {
 			email: '',
 		},
 	});
-	console.log(e); */
+	console.log(e);
 
 	const onSubmit = async ({ nombre, direccion, telefono, email }) => {
 		const rta = await axios.post('api/proveedores', {
@@ -75,7 +62,6 @@ const ProveedorForm = () => {
 							{...field}
 							label='Direccion'
 							placeholder='1ra Calle, 3ra Ave'
-							variant='outlined'
 						/>
 					)}
 				/>
@@ -104,7 +90,7 @@ const ProveedorForm = () => {
 					)}
 				/>
 				<input
-					disabled={errors}
+					// disabled={errors}
 					type='submit'
 					className='bg-green-500 ring-2 ring-green-300 hover:cursor-pointer active:bg-green-400'
 				/>
