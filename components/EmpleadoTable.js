@@ -6,14 +6,14 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-export default function ClientTable({clients}) {
+export default function EmpleadoTable({employees}) {
 	return <div className=' shadow-xl'>
 		<TableContainer component={Paper} className='p-4 border-2 border-emerald-100'>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
 				{}
         <TableHead>
           <TableRow>
-            <TableCell>ID del cliente</TableCell>
+            <TableCell>ID del empleado</TableCell>
             <TableCell align="right">P.&nbsp;nombre</TableCell>
             <TableCell align="right">P.&nbsp;apellido</TableCell>
             <TableCell align="right">Direccion</TableCell>
@@ -23,21 +23,21 @@ export default function ClientTable({clients}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {clients.map((client) => (
+          {employees?.map((employee) => (
             <TableRow
-              key={client.cli_id+client.nombre}
+              key={employee.emp_id+employee.nombre}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 							className='hover:bg-emerald-200 cursor-pointer'
             >
               <TableCell component="th" scope="row">
-                {client.cli_id}
+                {employee.emp_id}
               </TableCell>
-              <TableCell align="right">{client.nombre}</TableCell>
-              <TableCell align="right">{client.apellido}</TableCell>
-              <TableCell align="right">{client.direccion}</TableCell>
-              <TableCell align="right">{client.fecha_nacimiento}</TableCell>
-              <TableCell align="right">{client.telefono}</TableCell>
-              <TableCell align="right">{client.email}</TableCell>
+              <TableCell align="right">{employee.nombre}</TableCell>
+              <TableCell align="right">{employee.apellido}</TableCell>
+              <TableCell align="right">{employee.direccion}</TableCell>
+              <TableCell align="right">{employee.fecha_nacimiento}</TableCell>
+              <TableCell align="right">{employee.telefono}</TableCell>
+              <TableCell align="right">{employee.email}</TableCell>
             </TableRow>
           ))}
         </TableBody>

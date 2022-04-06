@@ -6,34 +6,35 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-export default function ArticleTable({articles}) {
+export default function ProveedorTable({providers}) {
 	return <div className=' shadow-xl'>
 		<TableContainer component={Paper} className='p-4 border-2 border-emerald-100'>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
 				{}
         <TableHead>
           <TableRow>
-            <TableCell>ID del articulo</TableCell>
+            <TableCell>ID del proveedor</TableCell>
+            <TableCell align="right">Fecha&nbsp;de&nbsp;entrega</TableCell>
             <TableCell align="right">Nombre</TableCell>
-            <TableCell align="right">Precio</TableCell>
-            <TableCell align="right">Cliente ID</TableCell>
-            <TableCell align="right">Bodega ID</TableCell>
+            <TableCell align="right">Direccion</TableCell>
+            <TableCell align="right">Telefono</TableCell>
+            <TableCell align="right">Email</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {articles.map((article) => (
+          {[].map((provider) => (
             <TableRow
-              key={article.arti_id+article.nombre}
+              key={provider.prov_id+provider.nombre}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 							className='hover:bg-emerald-200 cursor-pointer'
             >
               <TableCell component="th" scope="row">
-                {article.arti_id}
+                {provider.prov_id}
               </TableCell>
-              <TableCell align="right">{article.nombre}</TableCell>
-              <TableCell align="right">{article.precio}</TableCell>
-              <TableCell align="right">{article.cli_id}</TableCell>
-              <TableCell align="right">{article.bod_id}</TableCell>
+              <TableCell align="right">{provider.nombre}</TableCell>
+              <TableCell align="right">{provider.direccion}</TableCell>
+              <TableCell align="right">{provider.telefono}</TableCell>
+              <TableCell align="right">{provider.email}</TableCell>
             </TableRow>
           ))}
         </TableBody>

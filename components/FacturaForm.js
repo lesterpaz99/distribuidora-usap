@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
-import { endOfDay, format } from 'date-fns';
+import { format } from 'date-fns';
 import axios from 'axios';
 
 const FacturaForm = () => {
@@ -11,13 +11,11 @@ const FacturaForm = () => {
 	const [errorCliente, setErrorCliente] = useState(false);
 	const [errorCajero, setErrorCajero] = useState(false);
 
-	const handleTax = (newValue) => setTax(newValue);
-	const handleSubtotal = (newValue) => setSubtotal(newValue);
-
-	const handleTotal = () => {
-		const appliedTax = Number(subtotal) * (Number(tax) / 100);
-		setTotal(Number(subtotal) + Number(appliedTax));
-	};
+	useEffect(() => {
+		const taxPercentage = Number(tax) / 100;
+		const appliedTax = Number(subtotal) * taxPercentage;
+		setTotal(Number(subtotal) + appliedTax);
+	}, [tax, subtotal]);
 
 	const handleErrors = (e) => {
 		if (e.target.id === 'cli_id') {
@@ -34,7 +32,6 @@ const FacturaForm = () => {
 				return;
 			}
 			setErrorCajero(false);
-			return;
 		}
 	};
 
@@ -128,12 +125,9 @@ const FacturaForm = () => {
 						placeholder='Ingrese el impuesto a aplicar'
 						variant='outlined'
 						type='number'
-						onChange={(e) => {
-							field.onChange(e.target.value);
-							handleTax(e.target.value);
-							handleTotal();
+						onInput={(e) => {
+							setTax(e.target.value);
 						}}
-						value={tax}
 					/>
 				)}
 			/>
@@ -148,12 +142,9 @@ const FacturaForm = () => {
 						placeholder='Ingrese el total de la compra'
 						variant='outlined'
 						type='number'
-						onChange={(e) => {
-							field.onChange(e.target.value);
-							handleSubtotal(e.target.value);
-							handleTotal();
+						onInput={(e) => {
+							setSubtotal(e.target.value);
 						}}
-						value={subtotal}
 					/>
 				)}
 			/>
